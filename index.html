@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeSense - AI Trading Bot</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-robot"></i>
+                <span>TradeSense</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#trading" class="nav-link">Trading</a>
+                <a href="#charts" class="nav-link">Charts</a>
+                <a href="#history" class="nav-link">History</a>
+                <a href="#settings" class="nav-link">Settings</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="connectBtn">
+                    <i class="fas fa-plug"></i> Connect Exchange
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h1>AI Trading Dashboard</h1>
+                
+                <!-- Market Data Cards -->
+                <div class="market-cards">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fab fa-bitcoin"></i> BTC/USDT</h3>
+                            <span class="live-badge">LIVE</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="price">$35,246.78</div>
+                            <div class="change positive">+2.34%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fab fa-ethereum"></i> ETH/USDT</h3>
+                            <span class="live-badge">LIVE</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="price">$2,156.43</div>
+                            <div class="change positive">+1.67%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>AI Prediction</h3>
+                            <span class="ai-badge">AI</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="prediction bullish">BULLISH</div>
+                            <div class="confidence">87% Confidence</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bot Control Panel -->
+                <div class="control-panel">
+                    <div class="panel-header">
+                        <h2>Trading Bot Control</h2>
+                        <div class="status">
+                            <span class="status-dot stopped"></span>
+                            <span>Status: STOPPED</span>
+                        </div>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <div class="bot-stats">
+                            <div class="stat">
+                                <label>Balance</label>
+                                <span class="value">$1,245.67</span>
+                            </div>
+                            <div class="stat">
+                                <label>Today's P&L</label>
+                                <span class="value positive">+$45.23</span>
+                            </div>
+                            <div class="stat">
+                                <label>Win Rate</label>
+                                <span class="value">72.4%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bot-controls">
+                            <button class="btn btn-success btn-lg" id="startBot">
+                                <i class="fas fa-play"></i> Start Trading
+                            </button>
+                            <button class="btn btn-danger btn-lg" id="stopBot" disabled>
+                                <i class="fas fa-stop"></i> Stop Trading
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trading Section -->
+        <section id="trading" class="section">
+            <div class="container">
+                <h2>Trading Interface</h2>
+                <div class="trading-container">
+                    <div class="order-form">
+                        <h3>Manual Trade</h3>
+                        <form id="tradeForm">
+                            <div class="form-group">
+                                <label>Symbol</label>
+                                <select class="form-control">
+                                    <option>BTC/USDT</option>
+                                    <option>ETH/USDT</option>
+                                    <option>ADA/USDT</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" class="form-control" value="0.001" step="0.001">
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success active">BUY</button>
+                                    <button type="button" class="btn btn-danger">SELL</button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Execute Trade</button>
+                        </form>
+                    </div>
+                    
+                    <div class="open-orders">
+                        <h3>Open Positions</h3>
+                        <div class="orders-list">
+                            <div class="order-item">
+                                <div class="order-header">
+                                    <span class="symbol">BTC/USDT</span>
+                                    <span class="type buy">LONG</span>
+                                </div>
+                                <div class="order-details">
+                                    <span>Amount: 0.01 BTC</span>
+                                    <span>Entry: $34,567.89</span>
+                                    <span class="pnl positive">+$123.45</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section id="charts" class="section">
+            <div class="container">
+                <h2>Market Analysis</h2>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+                <div class="time-frames">
+                    <button class="time-btn active">1H</button>
+                    <button class="time-btn">4H</button>
+                    <button class="time-btn">1D</button>
+                    <button class="time-btn">1W</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="history" class="section">
+            <div class="container">
+                <h2>Trade History</h2>
+                <div class="history-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Profit</button>
+                    <button class="filter-btn">Loss</button>
+                </div>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Symbol</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>P&L</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTable">
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="container">
+                <h2>API Settings</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>Exchange</label>
+                        <select class="form-control">
+                            <option>Binance</option>
+                            <option>Binance Testnet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>API Key</label>
+                        <input type="password" class="form-control" placeholder="Enter your API Key">
+                    </div>
+                    <div class="form-group">
+                        <label>API Secret</label>
+                        <input type="password" class="form-control" placeholder="Enter your API Secret">
+                    </div>
+                    <button class="btn btn-primary">Save Settings</button>
+                    <button class="btn btn-outline">Test Connection</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 TradeSense AI Trading Bot. For educational purposes only.</p>
+        </div>
+    </footer>
+
+    <script src="js/marketData.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/tradingBot.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

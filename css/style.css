@@ -1,0 +1,522 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3366ff;
+}
+
+.nav-logo i {
+    margin-right: 0.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #ccc;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #3366ff;
+    background: #2a2a2a;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: #3366ff;
+    color: white;
+}
+
+.btn-success {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-danger {
+    background: #ff5252;
+    color: white;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #3366ff;
+    color: #3366ff;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Main Content */
+.main-content {
+    margin-top: 80px;
+    min-height: calc(100vh - 160px);
+}
+
+.section {
+    display: none;
+    padding: 2rem 0;
+}
+
+.section.active {
+    display: block;
+}
+
+/* Cards */
+.market-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 1.5rem;
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #3366ff;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.live-badge {
+    background: #ff5252;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.ai-badge {
+    background: #3366ff;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.card-body .price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.change {
+    font-weight: bold;
+}
+
+.change.positive {
+    color: #4CAF50;
+}
+
+.change.negative {
+    color: #ff5252;
+}
+
+.prediction {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.prediction.bullish {
+    color: #4CAF50;
+}
+
+.prediction.bearish {
+    color: #ff5252;
+}
+
+.confidence {
+    color: #ccc;
+}
+
+/* Control Panel */
+.control-panel {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid #333;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-dot.running {
+    background: #4CAF50;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.stopped {
+    background: #ff5252;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.bot-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat label {
+    display: block;
+    color: #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.stat .value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.stat .value.positive {
+    color: #4CAF50;
+}
+
+.stat .value.negative {
+    color: #ff5252;
+}
+
+.bot-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Trading Interface */
+.trading-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.order-form, .open-orders {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #3366ff;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-group .btn {
+    flex: 1;
+}
+
+.btn-group .btn.active {
+    background: #3366ff;
+}
+
+.orders-list {
+    margin-top: 1rem;
+}
+
+.order-item {
+    background: #2a2a2a;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3366ff;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.type.buy {
+    color: #4CAF50;
+}
+
+.type.sell {
+    color: #ff5252;
+}
+
+.order-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.pnl.positive {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.pnl.negative {
+    color: #ff5252;
+    font-weight: bold;
+}
+
+/* Charts */
+.chart-container {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    border: 1px solid #333;
+}
+
+.time-frames {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.time-btn {
+    padding: 0.5rem 1rem;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    color: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.time-btn.active {
+    background: #3366ff;
+    color: white;
+}
+
+/* History */
+.history-filters {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    color: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #3366ff;
+    color: white;
+}
+
+.history-table {
+    width: 100%;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.history-table th,
+.history-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.history-table th {
+    background: #2a2a2a;
+    font-weight: 600;
+}
+
+.history-table tr:hover {
+    background: #2a2a2a;
+}
+
+/* Settings */
+.settings-form {
+    max-width: 500px;
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #333;
+    margin: 2rem 0;
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a;
+    border-top: 1px solid #333;
+    padding: 2rem 0;
+    text-align: center;
+    color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-menu {
+        gap: 1rem;
+    }
+    
+    .market-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .trading-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .bot-controls {
+        flex-direction: column;
+    }
+    
+    .bot-stats {
+        grid-template-columns: 1fr;
+    }
+}
